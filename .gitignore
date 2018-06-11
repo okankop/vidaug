@@ -1,0 +1,11 @@
+#Exclude all the jpg images
+*.jpg
+
+#Exclude .pyc files
+*.pyc
+
+#Exclude swap files
+*.swp
+
+#Exclude same private files
+main2.py
