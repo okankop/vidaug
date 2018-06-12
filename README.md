@@ -3,7 +3,7 @@ This python library helps you with augmenting videos for your deep learning arch
 It converts input videos into a new, much larger set of slightly altered videos.
 
 
- <p align="center"><img src="videos/combined.gif" align="center" width="800" height="600" title="Augmentations" /></p>
+ <p align="center"><img src="videos/combined.gif" align="center" width="640" height="480" title="Augmentations" /></p>
 
 
   Original Video     
