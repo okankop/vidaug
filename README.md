@@ -3,19 +3,7 @@ This python library helps you with augmenting videos for your deep learning arch
 It converts input videos into a new, much larger set of slightly altered videos.
 
 
-<img width="240" height="180" src="videos/elastic.gif">
-<img width="240" height="180" src="videos/segmented.gif">
-<img width="240" height="180" src="videos/blurred.gif">
-
-<img width="240" height="180" src="videos/inverted.gif">
-<img width="240" height="180" src="videos/rotated.gif">
-<img width="240" height="180" src="videos/resized.gif">
-
-<img width="240" height="180" src="videos/translated.gif">
-<img width="240" height="180" src="videos/cropped.gif">
-<img width="240" height="180" src="videos/flipped.gif">
-
-
+<img width="640" height="480" src="videos/combined.gif">
 
   Original Video     
   
