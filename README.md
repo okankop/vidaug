@@ -11,6 +11,39 @@ It converts input videos into a new, much larger set of slightly altered videos.
  <p align="center"><img src="videos/original.gif" align="center" width="320" height="240" title="Original Video" /></p>
 
 
+## Requirements and installation
+
+Required packages:
+* numpy
+* PIL
+* scipy
+* skimage
+* OpenCV (i.e. `cv2`)
+
+For installation, simply use `sudo pip install git+https://github.com/okankop/vidaug`.
+Alternatively, the repository can be download via `git clone https://github.com/okankop/vidaug` and installed by using `python setup.py sdist && pip install dist/vidaug-0.1.tar.gz`.
+
+
+## Examples
+
+A classical video classification with CNN using augmentations on videos.
+Train on batches of images and augment each batch via random crop, random crop and horizontal flip:
+```python
+from vidaug import augmenters as va
+
+sometimes = lambda aug: va.Sometimes(0.5, aug) # Used to apply augmentor with 50% probability
+seq = va.Sequential([
+    va.RandomCrop(size=(240, 180)), # randomly crop video with a size of (240 x 180)
+    va.RandomRotate(angle=10), # randomly rotates the video with a degree randomly choosen from [-10, 10]  
+    sometimes(va.HorizontalFlip()) # horizontally flip the video with 50% probability
+])
+
+for batch_idx in range(1000):
+    # 'video' should be either a list of images from type of numpy array or PIL images
+    video = load_batch(batch_idx)
+    video_aug = seq.augment_images(video)
+    train_on_video(video)
+```
 
 
 
