@@ -34,7 +34,7 @@ from vidaug import augmentors as va
 sometimes = lambda aug: va.Sometimes(0.5, aug) # Used to apply augmentor with 50% probability
 seq = va.Sequential([
     va.RandomCrop(size=(240, 180)), # randomly crop video with a size of (240 x 180)
-    va.RandomRotate(degree=10), # randomly rotates the video with a degree randomly choosen from [-10, 10]  
+    va.RandomRotate(degrees=10), # randomly rotates the video with a degree randomly choosen from [-10, 10]  
     sometimes(va.HorizontalFlip()) # horizontally flip the video with 50% probability
 ])
 
