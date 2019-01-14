@@ -29,12 +29,12 @@ Alternatively, the repository can be download via `git clone https://github.com/
 A classical video classification with CNN using augmentations on videos.
 Train on batches of images and augment each batch via random crop, random crop and horizontal flip:
 ```python
-from vidaug import augmenters as va
+from vidaug import augmentors as va
 
 sometimes = lambda aug: va.Sometimes(0.5, aug) # Used to apply augmentor with 50% probability
 seq = va.Sequential([
     va.RandomCrop(size=(240, 180)), # randomly crop video with a size of (240 x 180)
-    va.RandomRotate(angle=10), # randomly rotates the video with a degree randomly choosen from [-10, 10]  
+    va.RandomRotate(degree=10), # randomly rotates the video with a degree randomly choosen from [-10, 10]  
     sometimes(va.HorizontalFlip()) # horizontally flip the video with 50% probability
 ])
 
