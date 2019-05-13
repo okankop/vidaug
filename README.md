@@ -41,7 +41,7 @@ seq = va.Sequential([
 for batch_idx in range(1000):
     # 'video' should be either a list of images from type of numpy array or PIL images
     video = load_batch(batch_idx)
-    video_aug = seq.augment_images(video)
+    video_aug = seq(video)
     train_on_video(video)
 ```
 
