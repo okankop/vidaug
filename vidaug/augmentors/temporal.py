@@ -16,6 +16,9 @@ List of augmenters:
     * Upsample
     * TemporalFit
     * TemporalElasticTransformation
+    * DropRandomFrames
+    * DuplicateRandomFrames
+    
 """
 
 import numpy as np
@@ -212,3 +215,47 @@ class TemporalElasticTransformation(object):
         values = [x / values[-1] for x in values]
         values = [int(round(((x + 1) / 2) * (frames_per_clip - 1), 0)) for x in values]
         return values
+    
+    
+class DropRandomFrames(object):
+    """
+    Randomly drops each frame in the video with a set probability
+
+    Args:
+        drop_chance (float): probability of deleting any frame
+    """
+    def __init__(self, drop_chance=0.0):
+        if drop_chance < 0.0 or drop_chance > 1.0:
+            raise ValueError("drop_chance must be a float in the range [0.0, 1.0]")
+        self.drop_chance = drop_chance
+
+    def __call__(self, clip):
+        vid_size = len(clip)
+        indices = np.array(range(vid_size))
+        keep_vector = np.random.random(size=vid_size) > self.drop_chance
+
+        return [clip[i] for i in indices[keep_vector]]
+
+
+class DuplicateRandomFrames(object):
+    """
+    Randomly duplicates each frame in the video with a set probability
+
+    Args:
+        duplicate_chance (float): probability of a frame being duplicated
+    """
+    def __init__(self, duplicate_chance=0.0):
+        if duplicate_chance < 0.0 or duplicate_chance > 1.0:
+            raise ValueError("duplicate_chance must be a float in the range [0.0, 1.0]")
+        self.duplicate_chance = duplicate_chance
+
+    def __call__(self, clip):
+        vid_size = len(clip)
+        indices = list(range(vid_size))
+
+        for i in range(len(indices) - 1, -1, -1):
+            if np.random.random() < self.duplicate_chance:
+                indices.insert(i, indices[i])
+
+        return [clip[i] for i in indices]
+
